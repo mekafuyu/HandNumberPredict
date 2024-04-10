@@ -7,10 +7,11 @@ import model_utils
 
 epochs = 100
 batch_size = 32
-patience = 16
+patience = 10
 learning_rate = 1e-3
 model_path = 'checkpoints/'
-train_path = 'fingers/train'
+train_path = 'fingers/fingers/train'
+train_set = '-binarize'
 
 # organize(train_path)
 # transformImage(train_path, 'binarize', binarize)
@@ -18,8 +19,8 @@ train_path = 'fingers/train'
 # transformImage(train_path + '-binarize', 'fourier', fourier)
 
 model1 = model_utils.DefaultModel(
-  model_path + 'model1.keras',
-  train_path + '-binarize-fourier',
+  model_path + f'model{train_set}.keras',
+  train_path + train_set,
   epochs,
   batch_size,
   patience,

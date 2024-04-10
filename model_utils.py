@@ -30,7 +30,9 @@ class DefaultModel:
       self.model = models.Sequential([
         layers.Resizing(32, 32),
         layers.Rescaling(1.0/255),
-        # layers.RandomRotation((-0.1, 0.1)),
+        layers.RandomCrop(100, 100),
+        layers.RandomRotation((-1, 1)),
+        layers.RandomZoom((-0.5, 0.5), (-0.5, 0.5)),
         layers.RandomFlip(),
         layers.BatchNormalization(axis=1),
         
@@ -90,7 +92,7 @@ class DefaultModel:
       subset= "training",
       seed= 123,
       shuffle= True,
-      image_size= (224, 224),
+      image_size= (128, 128),
       batch_size= self._batch_size
     )
     self.test = utils.image_dataset_from_directory(
@@ -99,7 +101,7 @@ class DefaultModel:
       subset= "validation",
       seed= 123,
       shuffle= True,
-      image_size= (224, 224),
+      image_size= (128, 128),
       batch_size= self._batch_size
     )
 

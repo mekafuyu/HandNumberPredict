@@ -35,10 +35,10 @@ def transformImage(path, name, func):
     for file in os.listdir(curr_path):
       if '.' not in file:
         continue
-      source_file = os.path.join(curr_path, file)
+      input = os.path.join(curr_path, file)
       destination_file = os.path.join(curr_new_path, file)
       img = cv.imread(input)
-      img = cv.cvtColor(input, cv.COLOR_BGR2GRAY)
+      img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
       cv.imwrite(destination_file, func(img))
 
 def binarize(input):
